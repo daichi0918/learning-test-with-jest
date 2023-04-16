@@ -207,3 +207,14 @@ test('throw Error when the length of password is less than 6', () => {
     'The password length must be at least 6 characters.'
   ); //エラーメッセージのチェック
 });
+
+const fetchDataWithCallback = (callback) => {
+  setTimeout(callback, 3000, 'lemon'); // 3秒経ってから`lemon`という文字列を返す
+};
+test('return lemon', (done) => {
+  const callback = (data) => {
+    expect(data).toBe('lemon');
+    done(); //テストの終了を宣言
+  };
+  fetchDataWithCallback(callback);
+});
